@@ -28,12 +28,10 @@ pipes.push({
     height: canvas.height
 });
 
-// Menggambar Burung
 function drawBird() {
     ctx.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 }
 
-// Menggambar Pipa
 function drawPipes() {
     for (let i = 0; i < pipes.length; i++) {
         ctx.fillStyle = "#4CAF50";
@@ -42,12 +40,10 @@ function drawPipes() {
     }
 }
 
-// Update Pipa
 function updatePipes() {
     for (let i = 0; i < pipes.length; i++) {
         pipes[i].x -= 2;
 
-        // Menambah pipa baru
         if (pipes[i].x === 200) {
             pipes.push({
                 x: canvas.width,
@@ -57,13 +53,11 @@ function updatePipes() {
             });
         }
 
-        // Menghapus pipa yang keluar dari layar
         if (pipes[i].x + pipes[i].width < 0) {
             pipes.shift();
             score++;
         }
 
-        // Cek tabrakan
         if (bird.x < pipes[i].x + pipes[i].width &&
             bird.x + bird.width > pipes[i].x &&
             (bird.y < pipes[i].y - 100 || bird.y + bird.height > pipes[i].y + 100)) {
